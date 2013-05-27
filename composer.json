@@ -1,0 +1,25 @@
+{
+    "name": "kutny/tracy-bundle",
+    "type": "symfony-bundle",
+    "description": "Nette Tracy debugger for Symfony",
+    "keywords": ["Debug", "Nette"],
+    "homepage": "https://github.com/kutny/tracy-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jiri Koutny",
+            "email": "jirkakoutny@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "tracy/tracy": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Kutny\\TracyBundle": ""
+        }
+    },
+    "target-dir": "Kutny/TracyBundle",
+    "minimum-stability": "dev"
+}
