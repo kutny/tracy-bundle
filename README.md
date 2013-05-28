@@ -5,6 +5,8 @@ This bundle adds powerfull [Tracy debug tool](http://doc.nette.org/en/debugging)
 
 Tracy is a part of [Nette Framework](http://nette.org/).
 
+![Nette Tracy screenshot](http://files.nette.org/2398/debugger1.png)
+
 Installation
 ------------
 
