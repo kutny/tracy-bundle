@@ -1,7 +1,7 @@
 Tracy PHP debugger bundle for Symfony
 =====================================
 
-This bundle adds powerfull [Tracy debug tool](http://doc.nette.org/en/debugging) to Symfony2 framework.
+This bundle adds powerfull [Tracy debug tool](https://github.com/nette/tracy) to Symfony2 framework.
 
 Tracy is a part of [Nette Framework](http://nette.org/).
 
@@ -53,7 +53,15 @@ I also recommend you to enable Tracy in a strict mode so it can handle errors of
 \Tracy\Debugger::$strictMode = true;
 ~~~~~
 
-See the [full docs](Read docs at http://doc.nette.org/en/debugging) for more options.
+**Production mode**:
+
+General [Server error page](http://files.nette.org/2398/debugger3.png) will be displayed if you enable the Debugger in the production mode. All errors/exceptions will be stored in _app/logs_ directory and sent to errors@mycompany.com.
+
+~~~~~ php
+\Tracy\Debugger::enable(Debugger::PRODUCTION, __DIR__ . '/logs/', 'errors@mycompany.com');
+~~~~~
+
+-------------
 
 License
 =======
