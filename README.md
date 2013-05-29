@@ -3,9 +3,18 @@ Tracy PHP debugger bundle for Symfony
 
 This bundle adds powerfull [Tracy debug tool](https://github.com/nette/tracy) to Symfony2 framework.
 
-Tracy is a part of [Nette Framework](http://nette.org/).
+**Why is Tracy better than Symfony build-in debugger?**
 
-![Nette Tracy screenshot](http://files.nette.org/2398/debugger1.png)
+* Exception stack trace contains values of all method arguments.
+* Request & Response & Server environment information are displayed on the error page. 
+* The whole error page with full stack trace can be easily stored to some directory as HTML file (useful on production mode).
+* Webmaster can be notified by email about errors that occured on the site.
+
+See **full sample error page**: http://examples.nette.org/ndebug/nette-exception.html
+
+[![Nette Tracy screenshot](http://files.nette.org/2398/debugger1.png)](http://examples.nette.org/ndebug/nette-exception.html)
+
+Tracy is a part of [Nette Framework](http://nette.org/).
 
 Installation
 ------------
