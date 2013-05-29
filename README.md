@@ -75,4 +75,6 @@ General [Server error page](http://files.nette.org/2398/debugger3.png) will be d
 License
 =======
 
-https://github.com/kutny/autowiring-bundle/blob/master/LICENSE
+This bundle license: https://github.com/kutny/tracy-bundle/blob/master/LICENSE
+
+Tracy debugger license: https://github.com/nette/tracy/blob/master/license.md
