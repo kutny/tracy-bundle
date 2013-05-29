@@ -2,7 +2,7 @@
     "name": "kutny/tracy-bundle",
     "type": "symfony-bundle",
     "description": "Nette Tracy debugger for Symfony",
-    "keywords": ["Debug", "Nette"],
+    "keywords": ["Debug", "Nette", "Debugging"],
     "homepage": "https://github.com/kutny/tracy-bundle",
     "license": "MIT",
     "authors": [
