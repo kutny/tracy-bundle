@@ -2,7 +2,10 @@
 
 namespace Kutny\TracyBundle;
 
+use Exception;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Tracy\Debugger;
 
 class KernelExceptionListener
@@ -10,6 +13,20 @@ class KernelExceptionListener
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-        Debugger::_exceptionHandler($event->getException());
+        $exception = $event->getException();
+
+        if (!$this->isNotFoundException($exception) && !$this->isAccessDeniedHttpException($exception)) {
+            Debugger::_exceptionHandler($exception);
+        }
+    }
+
+    private function isNotFoundException(Exception $exception)
+    {
+        return $exception instanceOf NotFoundHttpException;
+    }
+
+    private function isAccessDeniedHttpException(Exception $exception)
+    {
+        return $exception instanceOf AccessDeniedHttpException;
     }
 }
