@@ -1,12 +1,12 @@
 Tracy PHP debugger bundle for Symfony
 =====================================
 
-This bundle adds powerfull [Tracy debug tool](https://github.com/nette/tracy) to Symfony2 framework.
+This bundle adds the powerful [Tracy debug tool](https://github.com/nette/tracy) to the Symfony2 framework.
 
-**Why is Tracy better than Symfony build-in debugger?**
+**Why is Tracy better than the Symfony build-in debugger?**
 
 * Exception stack trace contains values of all method arguments.
-* Request & Response & Server environment information are displayed on the error page. 
+* Request & Response & Server environment information is displayed on the error page.
 * The whole error page with full stack trace can be easily stored to some directory as HTML file (useful on production mode).
 * Webmaster can be notified by email about errors that occured on the site.
 
@@ -14,7 +14,7 @@ See **full sample error page**: http://examples.nette.org/ndebug/nette-exception
 
 [![Nette Tracy screenshot](http://files.nette.org/2398/debugger1.png)](http://examples.nette.org/ndebug/nette-exception.html)
 
-Tracy is a part of [Nette Framework](http://nette.org/).
+Tracy is a part of the [Nette Framework](http://nette.org/).
 
 Installation
 ------------
@@ -50,7 +50,7 @@ Open web/app.php and add the following code **before** the _AppKernel_ class is 
 \Tracy\Debugger::enable();
 ~~~~~
 
-You may also need to disable Tracy debug bar which appears in the right-bottom corner of the screen:
+You may also need to disable the Tracy debug bar which appears in the right-bottom corner of the screen:
 
 ~~~~~ php
 \Tracy\Debugger::$bar = false;
