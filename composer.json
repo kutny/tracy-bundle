@@ -20,6 +20,5 @@
             "Kutny\\TracyBundle": ""
         }
     },
-    "target-dir": "Kutny/TracyBundle",
-    "minimum-stability": "dev"
+    "target-dir": "Kutny/TracyBundle"
 }
