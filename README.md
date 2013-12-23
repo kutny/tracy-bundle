@@ -23,8 +23,7 @@ Installation
 
 ~~~~~ json
 "require": {
-    "kutny/tracy-bundle": "*",
-    "tracy/tracy": "@dev"
+    "kutny/tracy-bundle": "v0.9.0"
 }
 ~~~~~
 
@@ -49,12 +48,6 @@ Open web/app.php and add the following code **before** the _AppKernel_ class is 
 
 ~~~~~ php
 \Tracy\Debugger::enable();
-~~~~~
-
-You may also need to disable the Tracy debug bar which appears in the right-bottom corner of the screen:
-
-~~~~~ php
-\Tracy\Debugger::$bar = false;
 ~~~~~
 
 I also recommend you to enable Tracy in a strict mode so it can handle errors of type E_NOTICE and E_WARNING too.
