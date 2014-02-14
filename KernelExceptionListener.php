@@ -10,13 +10,21 @@ use Tracy\Debugger;
 
 class KernelExceptionListener
 {
+    /** string */
+    private $logDirectory;
+
+    public function __construct($logDirectory)
+    {
+        $this->logDirectory = $logDirectory;
+    }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
 
         if (!$this->isNotFoundException($exception) && !$this->isAccessDeniedHttpException($exception)) {
-            Debugger::_exceptionHandler($exception);
+            Debugger::$logDirectory = $this->logDirectory;
+            Debugger::_exceptionHandler($exception, true);
         }
     }
 
