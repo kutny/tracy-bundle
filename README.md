@@ -61,7 +61,15 @@ I also recommend you to enable Tracy in a strict mode so it can handle errors of
 General [Server error page](http://files.nette.org/2398/debugger3.png) will be displayed if you enable the Debugger in the production mode. All errors/exceptions will be stored in _app/logs_ directory and sent to errors@mycompany.com.
 
 ~~~~~ php
-\Tracy\Debugger::enable(Debugger::PRODUCTION, __DIR__ . '/logs/', 'errors@mycompany.com');
+\Tracy\Debugger::enable(Debugger::PRODUCTION, false, 'errors@mycompany.com');
+~~~~~
+
+By default the exceptions will be stored in the `%kernel.logs_dir%/exceptions` directory.
+You can overwrite the default log directory in your config.yml file
+
+~~~~~ yaml
+kutny_tracy:
+    exceptions_directory: <directory>
 ~~~~~
 
 -------------
