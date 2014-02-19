@@ -23,7 +23,6 @@ class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('exceptions_directory')->defaultNull()->end()
-                ->scalarNode('exceptions_directory')->defaultNull()->end()
             ->end()
         ->end();
 
