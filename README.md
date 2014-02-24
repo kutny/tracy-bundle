@@ -23,7 +23,7 @@ Installation
 
 ~~~~~ json
 "require": {
-    "kutny/tracy-bundle": "v0.9.0"
+    "kutny/tracy-bundle": "dev-master"
 }
 ~~~~~
 
