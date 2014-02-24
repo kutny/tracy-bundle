@@ -14,9 +14,12 @@ class KernelExceptionListener
     /** string */
     private $logDirectory;
 
-    public function __construct($logDirectory)
+    private $emails;
+
+    public function __construct($logDirectory, array $emails)
     {
         $this->logDirectory = $logDirectory;
+        $this->emails = $emails;
     }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
@@ -25,6 +28,8 @@ class KernelExceptionListener
 
         if (!$this->isNotFoundException($exception) && !$this->isAccessDeniedHttpException($exception)) {
             Debugger::$logDirectory = $this->logDirectory;
+            Debugger::$email = $this->emails;
+
             ob_start();
             Debugger::_exceptionHandler($exception, true);
             $event->setResponse(new Response(ob_get_contents()));

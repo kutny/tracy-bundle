@@ -20,11 +20,15 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('kutny_tracy');
 
         $rootNode
-            ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('exceptions_directory')->defaultNull()->end()
-            ->end()
-        ->end();
+                ->arrayNode('emails')
+                    ->isRequired()
+                    ->prototype('scalar')->end()
+                ->end()
+                ->scalarNode('exceptions_directory')
+                    ->defaultNull()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

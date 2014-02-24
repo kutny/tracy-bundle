@@ -20,7 +20,9 @@ class KutnyTracyExtension extends Extension
         if (null === $dir) {
             $dir = $container->getParameter('kernel.logs_dir') . '/exceptions';
         }
+
         $container->setParameter('kutny_tracy.exceptions_directory', $dir);
+        $container->setParameter('kutny_tracy.emails', $config['emails']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');

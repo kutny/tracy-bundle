@@ -44,10 +44,18 @@ public function registerBundles()
 Configuration
 -------------
 
-Open web/app.php and add the following code **before** the _AppKernel_ class is instantiated:
+**1) app.php / app_dev.php**
+
+Open *web/app.php* and *web/app_dev.php* files and add the following code **before** the _AppKernel_ class is instantiated:
 
 ~~~~~ php
 \Tracy\Debugger::enable();
+~~~~~
+
+Or force the **production mode** where only [general server error page](http://nette.github.io/tracy/images/tracy-error2.png) will be displayed to the user ([read more](https://github.com/nette/tracy#production-mode-and-error-logging)):
+
+~~~~~ php
+\Tracy\Debugger::enable(\Tracy\Debugger::PRODUCTION);
 ~~~~~
 
 I also recommend you to enable Tracy in a strict mode so it can handle errors of type E_NOTICE and E_WARNING too.
@@ -56,20 +64,13 @@ I also recommend you to enable Tracy in a strict mode so it can handle errors of
 \Tracy\Debugger::$strictMode = true;
 ~~~~~
 
-**Production mode**:
-
-General [Server error page](http://nette.github.io/tracy/images/tracy-error2.png) will be displayed if you enable the Debugger in the production mode. All errors/exceptions will be stored in _app/logs_ directory and sent to errors@mycompany.com.
-
-~~~~~ php
-\Tracy\Debugger::enable(Debugger::PRODUCTION, false, 'errors@mycompany.com');
-~~~~~
-
-By default the exceptions will be stored in the `%kernel.logs_dir%/exceptions` directory.
-You can overwrite the default log directory in your config.yml file
+**2) config.yml**
 
 ~~~~~ yaml
 kutny_tracy:
-    exceptions_directory: <directory>
+    emails: ['errors@mycompany.com'] # error notification recipients
+    exceptions_directory: <directory> # optional, default directory set to %kernel.logs_dir%/exceptions
+
 ~~~~~
 
 -------------
