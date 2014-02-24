@@ -3,6 +3,8 @@ Tracy PHP debugger bundle for Symfony
 
 This bundle adds the powerful [Tracy debug tool](https://github.com/nette/tracy) to the Symfony2 framework.
 
+[![Nette Tracy screenshot](http://nette.github.io/tracy/images/tracy-exception.png)](http://nette.github.io/tracy/tracy-exception.html)
+
 **Why is Tracy better than the Symfony build-in debugger?**
 
 * Exception stack trace contains values of all method arguments.
@@ -10,9 +12,7 @@ This bundle adds the powerful [Tracy debug tool](https://github.com/nette/tracy)
 * The whole error page with full stack trace can be easily stored to some directory as HTML file (useful on production mode).
 * Webmaster can be notified by email about errors that occured on the site.
 
-See **full sample error page**: http://examples.nette.org/ndebug/nette-exception.html
-
-[![Nette Tracy screenshot](http://files.nette.org/2398/debugger1.png)](http://examples.nette.org/ndebug/nette-exception.html)
+See [full Tracy docs](https://github.com/nette/tracy) and [sample error page](http://nette.github.io/tracy/tracy-exception.html).
 
 Tracy is a part of the [Nette Framework](http://nette.org/).
 
@@ -58,7 +58,7 @@ I also recommend you to enable Tracy in a strict mode so it can handle errors of
 
 **Production mode**:
 
-General [Server error page](http://files.nette.org/2398/debugger3.png) will be displayed if you enable the Debugger in the production mode. All errors/exceptions will be stored in _app/logs_ directory and sent to errors@mycompany.com.
+General [Server error page](http://nette.github.io/tracy/images/tracy-error2.png) will be displayed if you enable the Debugger in the production mode. All errors/exceptions will be stored in _app/logs_ directory and sent to errors@mycompany.com.
 
 ~~~~~ php
 \Tracy\Debugger::enable(Debugger::PRODUCTION, false, 'errors@mycompany.com');
