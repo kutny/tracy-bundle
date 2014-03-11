@@ -27,14 +27,14 @@ Installation
 }
 ~~~~~
 
-2) Add KutnyTracyBundle to your application kernel
+2) Add KutnyTracyBundle to your application kernel.
+For This bundle to catch as many errors as possible it should be the first bundle in the bundles array.
 
 ~~~~~ php
 // app/AppKernel.php
 public function registerBundles()
 {
     return array(
-        // ...
         new Kutny\TracyBundle\KutnyTracyBundle(),
         // ...
     );
