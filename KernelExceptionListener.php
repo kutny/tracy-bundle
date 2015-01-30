@@ -3,6 +3,7 @@
 namespace Kutny\TracyBundle;
 
 use Exception;
+use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -22,6 +23,13 @@ class KernelExceptionListener
             $event->setResponse(new Response(ob_get_contents()));
             ob_clean();
         }
+    }
+
+    public function onConsoleException(ConsoleExceptionEvent $event)
+    {
+        $exception = $event->getException();
+
+        Debugger::log($exception, Debugger::ERROR);
     }
 
     private function isNotFoundException(Exception $exception)

@@ -7,6 +7,7 @@
     <services>
         <service id="kutny_tracy_kernel_exception_listener" class="Kutny\TracyBundle\KernelExceptionListener">
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
+            <tag name="kernel.event_listener" event="console.exception" method="onConsoleException"/>
         </service>
     </services>
 </container>
