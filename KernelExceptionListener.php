@@ -19,7 +19,7 @@ class KernelExceptionListener
 
         if (!$this->isNotFoundException($exception) && !$this->isAccessDeniedHttpException($exception)) {
             ob_start();
-            Debugger::_exceptionHandler($exception, true);
+            Debugger::exceptionHandler($exception, true);
             $event->setResponse(new Response(ob_get_contents()));
             ob_clean();
         }
