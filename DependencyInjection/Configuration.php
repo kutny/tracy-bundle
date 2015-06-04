@@ -28,6 +28,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('exceptions_directory')
                     ->defaultNull()
                 ->end()
+                ->scalarNode('store_username_in_server_variable')
+                    ->defaultNull()
+                ->end()
             ->end();
 
         return $treeBuilder;
