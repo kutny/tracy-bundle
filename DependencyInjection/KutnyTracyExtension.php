@@ -40,6 +40,38 @@ class KutnyTracyExtension extends Extension
 
             $fs->mkdir($dir);
         }
+
+        $defaultIgnoredExceptions = array(
+            'Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException',
+            'Symfony\Component\HttpKernel\Exception\NotFoundHttpException',
+        );
+
+        foreach ($defaultIgnoredExceptions as $exception) {
+            if (!in_array($exception, $config['ignored_exceptions'], true)) {
+                $config['ignored_exceptions'][] = $exception;
+            }
+        }
+
+        foreach ($config['ignored_exceptions'] as $exception) {
+            $this->testExceptionExists($exception);
+        }
+
+        sort($config['ignored_exceptions']);
+        
+        $container->setParameter('kutny_tracy.ignored_exceptions', array_fill_keys($config['ignored_exceptions'], 1));
     }
 
+    /**
+     * Checks if an exception is loadable.
+     *
+     * @param string $exception Class to test
+     *
+     * @throws \InvalidArgumentException if the class was not found.
+     */
+    private function testExceptionExists($exception)
+    {
+        if (!is_subclass_of($exception, '\Exception') && !is_a($exception, '\Exception', true)) {
+            throw new \InvalidArgumentException("KutnyTracyBundle exception mapper: Could not load class '$exception' or the class does not extend from '\Exception'. Most probably this is a configuration problem.");
+        }
+    }
 }

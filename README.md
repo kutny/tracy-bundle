@@ -71,6 +71,10 @@ kutny_tracy:
     emails: ['errors@mycompany.com'] # error notification recipients
     exceptions_directory: <directory> # optional, default directory set to %kernel.logs_dir%/exceptions
     store_username_in_server_variable: true|false # optional, default value = false; stores username of logged user in $_SERVER['SYMFONY_USERNAME'] - helps you to find out which user encountered the error
+    ignored_exceptions:
+        - Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+        - RuntimeException
+        - UnexpectedValueException
 
 ~~~~~
 
