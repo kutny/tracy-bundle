@@ -15,18 +15,21 @@ class KernelExceptionListener
 {
     private $storeUsernameInServerVariable;
     private $securityContext;
+    /** @var  array */
+    private $ignoredExceptions;
 
-    public function __construct($storeUsernameInServerVariable, SecurityContext $securityContext)
+    public function __construct($storeUsernameInServerVariable, SecurityContext $securityContext, array $ignoredExceptions)
     {
         $this->storeUsernameInServerVariable = $storeUsernameInServerVariable;
         $this->securityContext = $securityContext;
+        $this->ignoredExceptions = $ignoredExceptions;
     }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
 
-        if (!$this->isNotFoundException($exception) && !$this->isAccessDeniedHttpException($exception)) {
+        if (!$this->isIgnoredException($exception)) {
             if ($this->storeUsernameInServerVariable)
             {
                 $this->storeUsernameInServerVariable();
@@ -46,14 +49,9 @@ class KernelExceptionListener
         Debugger::log($exception, Debugger::ERROR);
     }
 
-    private function isNotFoundException(Exception $exception)
+    private function isIgnoredException(Exception $exception)
     {
-        return $exception instanceOf NotFoundHttpException;
-    }
-
-    private function isAccessDeniedHttpException(Exception $exception)
-    {
-        return $exception instanceOf AccessDeniedHttpException;
+        return isset($this->ignoredExceptions[get_class($exception)]);
     }
 
     private function storeUsernameInServerVariable()
