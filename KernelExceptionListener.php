@@ -6,8 +6,6 @@ use Exception;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\SecurityContext;
 use Tracy\Debugger;
 
@@ -29,16 +27,20 @@ class KernelExceptionListener
     {
         $exception = $event->getException();
 
-        if (!$this->isIgnoredException($exception)) {
-            if ($this->storeUsernameInServerVariable)
-            {
+        if (Debugger::isEnabled() && !$this->isIgnoredException($exception)) {
+            if ($this->storeUsernameInServerVariable) {
                 $this->storeUsernameInServerVariable();
             }
 
-            ob_start();
-            Debugger::exceptionHandler($exception, true);
-            $event->setResponse(new Response(ob_get_contents()));
-            ob_clean();
+            if (Debugger::$productionMode === true) {
+                Debugger::log($exception, Debugger::ERROR);
+            }
+            else if (Debugger::$productionMode === false) {
+                ob_start();
+                Debugger::exceptionHandler($exception, true);
+                $event->setResponse(new Response(ob_get_contents()));
+                ob_clean();
+            }
         }
     }
 
