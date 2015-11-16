@@ -6,20 +6,20 @@ use Exception;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Tracy\Debugger;
 
 class KernelExceptionListener
 {
     private $storeUsernameInServerVariable;
-    private $securityContext;
+    private $tokenStorage;
     /** @var  array */
     private $ignoredExceptions;
 
-    public function __construct($storeUsernameInServerVariable, SecurityContext $securityContext, array $ignoredExceptions)
+    public function __construct($storeUsernameInServerVariable, TokenStorageInterface $tokenStorage, array $ignoredExceptions)
     {
         $this->storeUsernameInServerVariable = $storeUsernameInServerVariable;
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
         $this->ignoredExceptions = $ignoredExceptions;
     }
 
@@ -58,7 +58,7 @@ class KernelExceptionListener
 
     private function storeUsernameInServerVariable()
     {
-        $token = $this->securityContext->getToken();
+        $token = $this->tokenStorage->getToken();
 
         if ($token) {
             $_SERVER['SYMFONY_USERNAME'] = $token->getUsername();
