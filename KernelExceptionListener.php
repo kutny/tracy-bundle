@@ -16,7 +16,7 @@ class KernelExceptionListener
     /** @var  array */
     private $ignoredExceptions;
 
-    public function __construct($storeUsernameInServerVariable, TokenStorageInterface $tokenStorage, array $ignoredExceptions)
+    public function __construct($storeUsernameInServerVariable, TokenStorageInterface $tokenStorage = null, array $ignoredExceptions)
     {
         $this->storeUsernameInServerVariable = $storeUsernameInServerVariable;
         $this->tokenStorage = $tokenStorage;
@@ -28,9 +28,7 @@ class KernelExceptionListener
         $exception = $event->getException();
 
         if (Debugger::isEnabled() && !$this->isIgnoredException($exception)) {
-            if ($this->storeUsernameInServerVariable) {
-                $this->storeUsernameInServerVariable();
-            }
+            $this->storeUsernameInServerVariable();
 
             if (Debugger::$productionMode === true) {
                 Debugger::log($exception, Debugger::ERROR);
@@ -58,6 +56,9 @@ class KernelExceptionListener
 
     private function storeUsernameInServerVariable()
     {
+        if (null === $this->tokenStorage || !$this->storeUsernameInServerVariable) {
+            return;
+        }
         $token = $this->tokenStorage->getToken();
 
         if ($token) {
