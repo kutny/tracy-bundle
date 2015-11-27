@@ -28,7 +28,9 @@ class KernelExceptionListener
         $exception = $event->getException();
 
         if (Debugger::isEnabled() && !$this->isIgnoredException($exception)) {
-            $this->storeUsernameInServerVariable();
+            if ($this->storeUsernameInServerVariable && $this->tokenStorage !== null) {
+                $this->storeUsernameInServerVariable();
+            }
 
             if (Debugger::$productionMode === true) {
                 Debugger::log($exception, Debugger::ERROR);
@@ -56,9 +58,6 @@ class KernelExceptionListener
 
     private function storeUsernameInServerVariable()
     {
-        if (null === $this->tokenStorage || !$this->storeUsernameInServerVariable) {
-            return;
-        }
         $token = $this->tokenStorage->getToken();
 
         if ($token) {
