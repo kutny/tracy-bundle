@@ -7,7 +7,7 @@
     <services>
         <service id="kutny_tracy_kernel_exception_listener" class="Kutny\TracyBundle\KernelExceptionListener">
             <argument>%kutny_tracy.store_username_in_server_variable%</argument>
-            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.token_storage" on-invalid="null"/>
             <argument>%kutny_tracy.ignored_exceptions%</argument>
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
             <tag name="kernel.event_listener" event="console.exception" method="onConsoleException"/>
