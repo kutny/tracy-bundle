@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('emails')
-                    ->isRequired()
+                    ->defaultValue(array())
                     ->prototype('scalar')->end()
                 ->end()
                 ->scalarNode('exceptions_directory')
