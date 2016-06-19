@@ -19,12 +19,10 @@ Tracy is a part of the [Nette Framework](http://nette.org/).
 Installation
 ------------
 
-1) Add __kutny/tracy-bundle__ to your composer.json.
+1) Install via composer:
 
-~~~~~ json
-"require": {
-    "kutny/tracy-bundle": "dev-master"
-}
+~~~~~ bash
+composer require kutny/tracy-bundle
 ~~~~~
 
 2) Add KutnyTracyBundle to your application kernel.
