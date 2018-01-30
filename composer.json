@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "tracy/tracy": "~2.3",
+        "tracy/tracy": "~2.4",
         "symfony/security": "~2.6|~3.0|~4.0"
     },
     "autoload": {
